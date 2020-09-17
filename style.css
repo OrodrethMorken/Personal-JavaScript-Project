@@ -5,3 +5,23 @@ html, body {
 canvas {
   display: block;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  justify-content: center;
+  align-content: left;
+  align-self: start;
+}
+
+.grid-item{
+  background: grey;
+  text-align: left;
+  border: black 5px solid;
+  list-style: none;
+}
+.canvas{
+
+  width: 400px;
+  height: 400px;
+}
