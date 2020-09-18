@@ -16,7 +16,7 @@ var removeTextButton;
 alert("Benvenuti in questa pagina. \nQui potrete creare delle immagini dove potrete scegliere come colorare lo sfondo e inserire le vostre frasi preferite.\nPer salvare l'immagine premete il tasto apposito");
 
 function setup() {
-  createCanvas(400, 400).parent("#canvas");
+  createCanvas(400, 400, P2D).parent("#canvas");
   colorMode(RGB, 400);
   c1 = createColorPicker(color(400, 0, 0)).parent("#color1");
   c1.input(createMatrix);
@@ -81,15 +81,12 @@ function removeText(textB){
 }
 
 function createImageFile(){
-  if(textI.value().length>0){
-    saveCanvas(textI.value(),"jpg");
-  }else {
-    saveCanvas("Image","jpg");
-  }
+  let imageName = "image"+day()+hour()+minute();
+  saveCanvas(imageName,"jpg");
 }
 
 function draw() {
-  background(0);
+  // background(0);
   noStroke();
   strokeWeight(3);
   for (let i = 0; i < width; i+=2) {
