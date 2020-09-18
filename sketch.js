@@ -91,8 +91,9 @@ function createImageFile(){
 function draw() {
   background(0);
   noStroke();
-  for (let i = 0; i < width; i++) {
-    for (let j = 0; j < height; j++) {
+  strokeWeight(3);
+  for (let i = 0; i < width; i+=2) {
+    for (let j = 0; j < height; j+=2) {
       stroke(matrix[i][j]);
       point(i, j);
     }
