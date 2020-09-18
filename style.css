@@ -8,20 +8,22 @@ canvas {
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: 400px fit-content(10%) fit-content(10%);
   justify-content: center;
   align-content: left;
   align-self: start;
 }
 
 .grid-item{
-  background: grey;
+  background:antiquewhite;
   text-align: left;
-  border: black 5px solid;
+  border: gray 2.5px solid;
   list-style: none;
 }
 .canvas{
-
   width: 400px;
   height: 400px;
+}
+.textBoxH{
+  border-bottom: blue 5px solid
 }

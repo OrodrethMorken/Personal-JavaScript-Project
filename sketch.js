@@ -3,12 +3,17 @@ var c2;
 var c3;
 var c4;
 var matrix;
-var textI;
-var textV;
-var textO;
-var textS;
-var textC;
+var textArray = [];
+// var textI;
+// var textV;
+// var textO;
+// var textS;
+// var textC;
 var saveButton;
+var addTextButton;
+var removeTextButton;
+// var textField;
+alert("Benvenuti in questa pagina. \nQui potrete creare delle immagini dove potrete scegliere come colorare lo sfondo e inserire le vostre frasi preferite.\nPer salvare l'immagine premete il tasto apposito");
 
 function setup() {
   createCanvas(400, 400).parent("#canvas");
@@ -22,11 +27,8 @@ function setup() {
   c4 = createColorPicker(color(0,0,0)).parent("#color4");
   c4.input(createMatrix);
   createMatrix();
-  textI = createInput("").parent("#textInput");
-  textO = createSlider(0, width, width/2, 10).parent("#textOrizontal");
-  textV = createSlider(0, height, height/2, 10).parent("#textVertical");
-  textS = createSlider(10, width, 100, 10).parent("#sizeText");
-  textC = createColorPicker(color(400)).parent("#textColor");
+  addTextButton = createButton("aggiungi Testo").parent("#textContainer");
+  addTextButton.mousePressed(addText);
   saveButton = createButton("Salva Immagine").parent("#imageSave");
   saveButton.mousePressed(createImageFile);
 }
@@ -42,7 +44,40 @@ function createMatrix(){
       matrix[i][j] = lerpColor(c1mid, c2mid, i / width);
     }
   }
+  loop();
+}
 
+function addText(){
+  let newText = new TextBox(textArray.length);
+  newText.removeTextButton = createButton("Rimuovi Testo").parent(newText.textFieldC.id());
+  newText.removeTextButton.mousePressed(function(){return removeText(newText)});
+  addTextButton.parent("#textContainer");
+  textArray.push(newText);
+  // createElement("/UL","").parent("#textContainer");
+}
+
+function removeText(textB){
+  // console.log(textB);
+  // console.log(textB.position);
+  // textB.textI.remove();
+  // textB.textFieldT.remove();
+  // textB.textV.remove();
+  // textB.textFieldV.remove();
+  // textB.textO.remove();
+  // textB.textFieldO.remove();
+  // textB.textS.remove();
+  // textB.textFieldS.remove();
+  // textB.textC.remove();
+  // textB.removeTextButton.remove();
+  // textB.textFieldC.remove();
+  textB.textFieldContainer.remove();
+  let temp = textArray.splice(textB.position,1);
+  console.log(temp);
+  textArray.forEach((item, i) => {
+    item.updatePosition(i);
+  });
+
+  loop();
 }
 
 function createImageFile(){
@@ -62,11 +97,15 @@ function draw() {
       point(i, j);
     }
   }
-  if(textI.value().length>0){
-    noStroke();
-    fill(textC.color());
-    textSize(textS.value());
-    textAlign(CENTER);
-    text(textI.value(), textO.value(), textV.value());
-  }
+
+  textArray.forEach(textBox => {
+    if(textBox.textI != undefined && textBox.textI.value().length>0){
+      noStroke();
+      fill(textBox.textC.color());
+      textSize(textBox.textS.value());
+      textAlign(CENTER);
+      text(textBox.textI.value(), textBox.textO.value(), textBox.textV.value());
+    }
+  });
+  noLoop();
 }
