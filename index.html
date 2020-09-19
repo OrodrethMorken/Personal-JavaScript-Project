@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
 
@@ -9,24 +10,21 @@
   <body>
     <script src="sketch.js"></script>
     <script src="textBox.js"></script>
+    <script src="colorBlend.js"></script>
     <div class="grid-container">
-      <div class="grid-item">
+      <div class="grid-item-canvas">
         <div class="canvas" id="canvas">
         </div>
       </div>
-      <div class="grid-item" id="colors">
-
-        <li>Angolo alto/sinistra</li>
-        <li id="color1"></li>
-        <li>Angolo alto/destra</li>
-        <li id="color2"></li>
-        <li>Angolo basso/sinistra</li>
-        <li id="color3"></li>
-        <li>Angolo basso/destra</li>
-        <li id="color4"></li>
+      <div class="grid-item-selector" id="typeSelector">
         <li id="imageSave"></li>
       </div>
-      <div class="grid-item" id="textContainer">
+      <div class="grid-item-background" id="colors">
+
+      </div>
+      <div class="grid-item-text" id="textContainer">
+      </div>
+      <div class="info" id="info">
       </div>
     </div>
   </body>

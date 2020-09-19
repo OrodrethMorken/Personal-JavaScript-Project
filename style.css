@@ -9,17 +9,45 @@ canvas {
 .grid-container {
   display: grid;
   grid-template-columns: 400px fit-content(10%) fit-content(10%);
-  justify-content: center;
-  align-content: left;
+  grid-auto-rows: auto auto;
   align-self: start;
+  grid-template-areas:
+    "area1 area2 area2" "area1 area3 area4" "area5 area3 area4";
+  place-content: center;
 }
 
-.grid-item{
+.grid-item-canvas{
+ text-align: left;
+  border: gray 2.5px solid;
+  grid-area: area1;
+}
+
+.grid-item-selector{
+  background: gray;
+  height: auto;
+  list-style: none;
+  grid-area: area2;
+}
+
+.grid-item-background{
   background:antiquewhite;
   text-align: left;
   border: gray 2.5px solid;
   list-style: none;
+  grid-area: area3;
 }
+
+.grid-item-text{
+  background:antiquewhite;
+  text-align: left;
+  border: gray 2.5px solid;
+  list-style: none;
+  grid-area: area4;
+}
+.info{
+  grid-area: area5;
+}
+
 .canvas{
   width: 400px;
   height: 400px;
