@@ -1,26 +1,30 @@
 class TextBox {
 
-  constructor(position) {
-    this.position = position;
+  constructor(index) {
+    this.index = index;
+    this.visibility = true;
     this.textFieldContainer = createElement("div").parent("#textContainer");
     this.textFieldContainer.attribute("class", "textBoxH");
-    this.textFieldContainer.attribute("id", "textContainer"+position);
-    this.textFieldT = createElement("li", "Testo").parent("#textContainer"+position);
-    this.textFieldT.attribute("id", "textInput"+position);
-    this.textI = createInput("").parent("#textInput"+position);
-    this.textFieldV = createElement("li", "Posizione Verticale Testo").parent("#textContainer"+position);
-    this.textFieldV.attribute("id", "textVertical"+position);
-    this.textV = createSlider(0, height, height/2, 10).parent("#textVertical"+position);
-    this.textFieldO = createElement("li", "Posizione Orizzontale Testo").parent("#textContainer"+position);
-    this.textFieldO.attribute("id", "textOrizzontal"+position);
-    this.textO = createSlider(0, width, width/2, 10).parent("#textOrizzontal"+position);
-    this.textFieldS = createElement("li", "Grandezza Testo").parent("#textContainer"+position);
-    this.textFieldS.attribute("id", "sizeText"+position);
-    this.textS = createSlider(10, width, 100, 10).parent("#sizeText"+position);
-    this.textFieldC = createElement("li", "Colore Testo").parent("#textContainer"+position);
-    this.textFieldC.attribute("id", "textColor"+position);
-    this.textC = createColorPicker(color(400)).parent("#textColor"+position);
-    // this.updatePosition(position);
+    this.textFieldContainer.attribute("id", "textContainer"+index);
+    this.textFieldT = createElement("li", "Testo▼").parent("#textContainer"+index);
+    this.textFieldT.attribute("id", "textInput"+index);
+    this.textFieldT.mousePressed(function(){
+      return textArray[this.id().slice(9).valueOf()].toggle()});
+    this.textFieldView = createElement("div").parent("#textContainer"+index);
+    this.textFieldView.attribute("id", "textFieldView"+index);
+    this.textI = createInput("").parent("#textFieldView"+index);
+    this.textFieldV = createElement("li", "Posizione Verticale Testo").parent("#textFieldView"+index);
+    this.textFieldV.attribute("id", "textVertical"+index);
+    this.textV = createSlider(0, height, height/2, 10).parent("#textVertical"+index);
+    this.textFieldO = createElement("li", "Posizione Orizzontale Testo").parent("#textFieldView"+index);
+    this.textFieldO.attribute("id", "textOrizzontal"+index);
+    this.textO = createSlider(0, width, width/2, 10).parent("#textOrizzontal"+index);
+    this.textFieldS = createElement("li", "Grandezza Testo").parent("#textFieldView"+index);
+    this.textFieldS.attribute("id", "sizeText"+index);
+    this.textS = createSlider(10, width, 100, 10).parent("#sizeText"+index);
+    this.textFieldC = createElement("li", "Colore Testo").parent("#textFieldView"+index);
+    this.textFieldC.attribute("id", "textColor"+index);
+    this.textC = createColorPicker(color(400)).parent("#textColor"+index);
     this.textI.input(loop);
     this.textV.input(loop);
     this.textO.input(loop);
@@ -28,22 +32,31 @@ class TextBox {
     this.textC.input(loop);
   }
 
-  updatePosition(position){
-    // console.log("old pos: "+this.position+" new pos: "+position);
-    if(this.position != position){
-      this.position = position;
-      this.textFieldContainer.attribute("id", "textContainer"+position);
-      // this.textFieldT.parent("#textContainer"+position);
-      this.textFieldT.attribute("id", "textInput"+position);
-      // this.textI.parent("#textInput"+position);
-      this.textFieldV.attribute("id", "textVertical"+position);
-      // this.textV.parent("#textVertical"+position);
-      this.textFieldO.attribute("id", "textOrizzontal"+position);
-      // this.textO.parent("#textOrizzontal"+position);
-      this.textFieldS.attribute("id", "sizeText"+position);
-      // this.textS.parent("#sizeText"+position);
-      this.textFieldC.attribute("id", "textColor"+position);
-      // this.textC.parent("#textColor"+position);
+  toggle(){
+    let text;
+    if(this.visibility){
+      this.visibility = false;
+      this.textFieldView.hide();
+      text = this.textFieldT.elt.innerHTML.replace("▼","▲");
+    }
+    else {
+      this.visibility = true;
+      this.textFieldView.show();
+      text = this.textFieldT.elt.innerText.replace("▲","▼");
+    }
+    this.textFieldT.elt.innerText = text;
+  }
+
+  updateindex(index){
+    if(this.index != index){
+      this.index = index;
+      this.textFieldContainer.attribute("id", "textContainer"+index);
+      this.textFieldView.attribute("id", "textFieldView"+index);
+      this.textFieldT.attribute("id", "textInput"+index);
+      this.textFieldV.attribute("id", "textVertical"+index);
+      this.textFieldO.attribute("id", "textOrizzontal"+index);
+      this.textFieldS.attribute("id", "sizeText"+index);
+      this.textFieldC.attribute("id", "textColor"+index);
     }
   }
 }
