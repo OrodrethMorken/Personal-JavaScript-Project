@@ -29,9 +29,9 @@ class ColorBlend {
   createMatrix(blend){
     let timeStart = millis();
     blend.matrix = [];
-    for (let i = 0; i < width; i++) {
+    for (let i = 0; i < width; i+=2) {
       blend.matrix[i] = [];
-      for (let j = 0; j < height; j++) {
+      for (let j = 0; j < height; j+=2) {
         let c1mid = lerpColor(blend.c1.color(), blend.c3.color(), j / height);
         let c2mid = lerpColor(blend.c2.color(), blend.c4.color(), j / height);
         blend.matrix[i][j] = lerpColor(c1mid, c2mid, i / width);
