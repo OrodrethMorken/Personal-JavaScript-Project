@@ -10,7 +10,7 @@ canvas {
   display: grid;
   grid-template-columns: 400px fit-content(10%) fit-content(10%);
   grid-auto-rows: auto auto;
-  /*! align-self: start; */
+  font-size: 1vw;
   grid-template-areas:
     "area1 area2 area2" "area1 area3 area4" "area5 area3 area4";
   place-content: center;
@@ -47,6 +47,7 @@ canvas {
 }
 .info{
   grid-area: area5;
+  list-style: none;
 }
 
 .canvas{

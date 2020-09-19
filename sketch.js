@@ -49,24 +49,23 @@ function createImageFile(){
 
 function draw() {
   // background(0);
-  // noStroke();
-  // strokeWeight(3);
-  // for (let i = 0; i < width; i+=2) {
-  //   for (let j = 0; j < height; j+=2) {
-  //     stroke(matrix[i][j]);
-  //     point(i, j);
-  //   }
-  // }
   sfondo.draw();
 
   textArray.forEach(textBox => {
     if(textBox.textI != undefined && textBox.textI.value().length>0){
-      noStroke();
-      fill(textBox.textC.color());
-      textSize(textBox.textS.value());
-      textAlign(CENTER);
-      text(textBox.textI.value(), textBox.textO.value(), textBox.textV.value());
+      textBox.draw();
     }
   });
   noLoop();
 }
+
+// function mouseDragged(event) {
+//   // console.log(mouseY-pmouseY);
+//   if(mouseX>0 && mouseY>0 && mouseX<width && mouseY < height){
+//     textArray.forEach(item => {
+//       item.move();
+//     });
+//
+//     loop();
+//   }
+// }
