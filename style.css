@@ -13,7 +13,6 @@ canvas {
   font-size: 1vw;
   grid-template-areas:
     "area1 area2 area2" "area1 area3 area4" "area5 area3 area4";
-  /* place-content: center; */
 }
 
 .grid-item-canvas{

@@ -78,7 +78,6 @@ function createImageFile(){
 function draw() {
   // background(0);
   sfondo.draw();
-
   textArray.forEach(textBox => {
     if(textBox.textI != undefined && textBox.textI.value().length>0){
       textBox.draw();

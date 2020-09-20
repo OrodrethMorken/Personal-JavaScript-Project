@@ -89,6 +89,7 @@ class TextBox {
   // }
 
   draw(){
+    if(selected == SNOWFLAKE) translate(-width/2,-height/2);
     noStroke();
     fill(this.textC.color());
     textSize(this.textS.value());
