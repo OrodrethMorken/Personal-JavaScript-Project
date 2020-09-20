@@ -62,18 +62,20 @@ class Snowflake {
       const pointY = mouseY - (height/2);
       const ppointX = pmouseX - (width/2);
       const ppointY = pmouseY - (height/2);
-      this.array.push(new Points(pointX, pointY, ppointX, ppointY, this.color.value()));
+      this.array.push(new Points(pointX, pointY, ppointX, ppointY,
+                            this.color.value(), this.symmetry.value(), this.strokeW.value()));
     }
-    let angle = 360/this.symmetry.value();
-    for(let i = 0; i < this.symmetry.value(); i++){
-      rotate(angle);
-      strokeWeight(this.strokeW.value());
-      // line(pointX,pointY,ppointX,ppointY);
-      this.array.forEach(item => {
+    this.array.forEach(item => {
+
+      let angle = 360/item.symmetry;
+      for(let i=0; i < item.symmetry; i++ ){
+        rotate(angle);
         stroke(item.color);
+        strokeWeight(item.strokeW);
         line(item.x, item.y, item.px, item.py);
-      });
-    }
+      }
+    });
+
     let timeEnd = millis();
     let totalTime = timeEnd-timeStart;
     this.infoD.elt.innerText = (totalTime/1000).toString()+"s";
@@ -81,11 +83,13 @@ class Snowflake {
 }
 
 class Points {
-  constructor(x,y,px,py,color) {
+  constructor(x,y,px,py,color, symmetry, strokeW) {
     this.x = x;
     this.y = y;
     this.px = px;
     this.py = py;
     this.color = color;
+    this.symmetry = symmetry;
+    this.strokeW = strokeW;
   }
 }
