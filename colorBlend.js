@@ -1,6 +1,9 @@
 class ColorBlend {
   constructor() {
     colorMode(RGB, 400);
+    //GUI
+    this.guiContainer = createDiv("").parent("#gui");
+    this.guiContainer.attribute("id","colors");
     this.textFieldUL = createElement("li", "Angolo alto/sinistra").parent("#colors");
     this.textFieldUL.attribute("id", "color1");
     this.textFieldUR = createElement("li", "Angolo alto/destra").parent("#colors");
@@ -17,13 +20,22 @@ class ColorBlend {
     this.c3.input(function(){return sfondo.createMatrix(sfondo)});
     this.c4 = createColorPicker(color(0,0,0)).parent("#color4");
     this.c4.input(function(){return sfondo.createMatrix(sfondo)});
-    this.infoTextC = createElement("li", "tempo creazione matrice: ").parent("#info");
+    //INFO
+    this.infoContainer = createDiv("").parent("#info");
+    this.infoContainer.attribute("id","infoContainer");
+    this.infoTextC = createElement("li", "tempo creazione matrice: ").parent("#infoContainer");
     this.infoTextC.attribute("id", "infoC")
     this.infoC = createElement("li", "a").parent("#infoC");
-    this.infoTextD = createElement("li", "tempo Visualizzazione matrice: ").parent("#info");
+    this.infoTextD = createElement("li", "tempo Visualizzazione matrice: ").parent("#infoContainer");
     this.infoTextD.attribute("id", "infoD")
     this.infoD = createElement("li", "").parent("#infoD");
     this.createMatrix(this);
+  }
+
+  clear(){
+    this.guiContainer.remove();
+    this.infoContainer.remove();
+    // loop();
   }
 
   createMatrix(blend){
@@ -40,11 +52,11 @@ class ColorBlend {
     let timeEnd = millis();
     let totalTime = timeEnd-timeStart;
     blend.infoC.elt.innerText = (totalTime/1000).toString()+"s";
-    // console.log(totalTime);
     loop();
   }
 
   draw(){
+    translate(0,0);
     let timeStart = millis();
     noStroke();
     strokeWeight(3);
@@ -57,5 +69,6 @@ class ColorBlend {
     let timeEnd = millis();
     let totalTime = timeEnd-timeStart;
     this.infoD.elt.innerText = (totalTime/1000).toString()+"s";
+    noLoop();
   }
 }

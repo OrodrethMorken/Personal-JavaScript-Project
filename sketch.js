@@ -1,17 +1,55 @@
+var selector;
+var selected;
 var sfondo;
 var textArray = [];
 var saveButton;
 var addTextButton;
+var helpButton;
 var temp;
-alert("Benvenuti in questa pagina. \nQui potrete creare delle immagini dove potrete scegliere come colorare lo sfondo e inserire le vostre frasi preferite.\nPer salvare l'immagine premete il tasto apposito");
+const COLORBLEND = "Colori";
+const SNOWFLAKE = "Fiocchi";
+alert("Benvenuti in questa pagina. \nQui potrete creare delle immagini dove potrete creare lo sfondo e inserire il testo preferite.\nPer salvare l'immagine premete il tasto apposito");
 
 function setup() {
   createCanvas(400, 400, P2D).parent("#canvas");
-  sfondo = new ColorBlend();
+  selector = createSelect().parent("#typeSelector");
+  selector.option(COLORBLEND);
+  selector.option(SNOWFLAKE);
+  selector.selected(SNOWFLAKE);
+  selector.changed(changeBackground);
+  changeBackground();
+
   addTextButton = createButton("aggiungi Testo").parent("#textContainer");
   addTextButton.mousePressed(addText);
-  saveButton = createButton("Salva Immagine").parent("#imageSave");
+  helpButton = createButton("?").parent("#typeSelector");
+  helpButton.mousePressed(help);
+  saveButton = createButton("Salva Immagine").parent("#typeSelector");
   saveButton.mousePressed(createImageFile);
+}
+
+function changeBackground() {
+  let option = selector.value();
+  if(option != selected){
+    if(sfondo != undefined){
+      sfondo.clear();
+    }
+    background(0);
+    if(option == COLORBLEND){
+      sfondo = new ColorBlend();
+    }else if (option == SNOWFLAKE) {
+      sfondo = new Snowflake();
+    }
+    selected = option;
+  }
+  loop();
+}
+
+function help(){
+  if(selected == COLORBLEND){
+    alert("Lo sfondo viene creato facendo un passaggio di colore dal colore degli angoli");
+  } else if (selected == SNOWFLAKE) {
+    alert("Cliccando e trascinando sullo sfondo verranno create delle linee a rotazione");
+  }
 }
 
 function addText(){
@@ -46,7 +84,6 @@ function draw() {
       textBox.draw();
     }
   });
-  noLoop();
 }
 
 // function mouseDragged(event) {
