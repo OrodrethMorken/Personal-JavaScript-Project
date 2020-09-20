@@ -26,6 +26,7 @@ canvas {
   background: antiquewhite;
   height: auto;
   list-style: none;
+  border: gray 2.5px solid;
   grid-area: area2;
   text-align: center;
 }
