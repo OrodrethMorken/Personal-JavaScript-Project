@@ -1,19 +1,9 @@
-// var c1;
-// var c2;
-// var c3;
-// var c4;
-// var matrix;
 var sfondo;
 var textArray = [];
-// var textI;
-// var textV;
-// var textO;
-// var textS;
-// var textC;
 var saveButton;
 var addTextButton;
 var temp;
-// alert("Benvenuti in questa pagina. \nQui potrete creare delle immagini dove potrete scegliere come colorare lo sfondo e inserire le vostre frasi preferite.\nPer salvare l'immagine premete il tasto apposito");
+alert("Benvenuti in questa pagina. \nQui potrete creare delle immagini dove potrete scegliere come colorare lo sfondo e inserire le vostre frasi preferite.\nPer salvare l'immagine premete il tasto apposito");
 
 function setup() {
   createCanvas(400, 400, P2D).parent("#canvas");
