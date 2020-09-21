@@ -11,11 +11,14 @@ class Cloud extends BackgroundTemplate{
     this.textFieldUR = createElement("li", "Secondo Colore").parent("#options");
     this.textFieldUR.attribute("id", "color2");
     this.c1 = createColorPicker(color(252, 240, 3)).parent("#color1");
+    this.c1.input(loop);
     this.c2 = createColorPicker(color(0, 0, 0)).parent("#color2");
+    this.c2.input(loop);
     this.clearButton = createButton("Genera nuova nuvola").parent("#options");
     this.clearButton.mousePressed(function(){
     sfondo.xoff = random(100000);
     sfondo.yoff = random(100000);
+    loop();
     return noiseSeed(random(100000))});
     this.infoTextD = createElement("li", "tempo Visualizzazione immagine: ").parent("#infoContainer");
     this.infoTextD.attribute("id", "infoD")
@@ -37,5 +40,6 @@ class Cloud extends BackgroundTemplate{
     let timeEnd = millis();
     let totalTime = timeEnd-timeStart;
     this.infoD.elt.innerText = (totalTime/1000).toString()+"s";
+    noLoop();
   }
 }
