@@ -1,16 +1,15 @@
-class ColorBlend {
+class ColorBlend extends BackgroundTemplate{
   constructor() {
+    super();
     colorMode(RGB, 400);
     //GUI
-    this.guiContainer = createDiv("").parent("#gui");
-    this.guiContainer.attribute("id","colors");
-    this.textFieldUL = createElement("li", "Angolo alto/sinistra").parent("#colors");
+    this.textFieldUL = createElement("li", "Angolo alto/sinistra").parent("#options");
     this.textFieldUL.attribute("id", "color1");
-    this.textFieldUR = createElement("li", "Angolo alto/destra").parent("#colors");
+    this.textFieldUR = createElement("li", "Angolo alto/destra").parent("#options");
     this.textFieldUR.attribute("id", "color2");
-    this.textFieldDL = createElement("li", "Angolo basso/sinistra").parent("#colors");
+    this.textFieldDL = createElement("li", "Angolo basso/sinistra").parent("#options");
     this.textFieldDL.attribute("id", "color3");
-    this.textFieldDR = createElement("li", "Angolo basso/destra").parent("#colors");
+    this.textFieldDR = createElement("li", "Angolo basso/destra").parent("#options");
     this.textFieldDR.attribute("id", "color4");
     this.c1 = createColorPicker(color(400, 0, 0)).parent("#color1");
     this.c1.input(function(){return sfondo.createMatrix(sfondo)});
@@ -21,8 +20,6 @@ class ColorBlend {
     this.c4 = createColorPicker(color(0,0,0)).parent("#color4");
     this.c4.input(function(){return sfondo.createMatrix(sfondo)});
     //INFO
-    this.infoContainer = createDiv("").parent("#info");
-    this.infoContainer.attribute("id","infoContainer");
     this.infoTextC = createElement("li", "tempo creazione matrice: ").parent("#infoContainer");
     this.infoTextC.attribute("id", "infoC")
     this.infoC = createElement("li", "a").parent("#infoC");
@@ -30,12 +27,6 @@ class ColorBlend {
     this.infoTextD.attribute("id", "infoD")
     this.infoD = createElement("li", "").parent("#infoD");
     this.createMatrix(this);
-  }
-
-  clear(){
-    this.guiContainer.remove();
-    this.infoContainer.remove();
-    // loop();
   }
 
   createMatrix(blend){
@@ -56,7 +47,6 @@ class ColorBlend {
   }
 
   draw(){
-    translate(0,0);
     let timeStart = millis();
     noStroke();
     strokeWeight(3);

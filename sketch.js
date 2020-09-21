@@ -8,6 +8,7 @@ var helpButton;
 var temp;
 const COLORBLEND = "Colori";
 const SNOWFLAKE = "Fiocchi";
+const CLOUD = "Nuvole";
 alert("Benvenuti in questa pagina. \nQui potrete creare delle immagini dove potrete creare lo sfondo e inserire il testo preferite.\nPer salvare l'immagine premete il tasto apposito");
 
 function setup() {
@@ -15,6 +16,7 @@ function setup() {
   selector = createSelect().parent("#typeSelector");
   selector.option(COLORBLEND);
   selector.option(SNOWFLAKE);
+  selector.option(CLOUD);
   selector.selected(SNOWFLAKE);
   selector.changed(changeBackground);
   changeBackground();
@@ -38,6 +40,8 @@ function changeBackground() {
       sfondo = new ColorBlend();
     }else if (option == SNOWFLAKE) {
       sfondo = new Snowflake();
+    }else if (option == CLOUD) {
+      sfondo = new Cloud();
     }
     selected = option;
   }
@@ -49,6 +53,8 @@ function help(){
     alert("Lo sfondo viene creato facendo un passaggio di colore dal colore degli angoli");
   } else if (selected == SNOWFLAKE) {
     alert("Cliccando e trascinando sullo sfondo verranno create delle linee a rotazione");
+  } else if (selected == CLOUD) {
+    alert("Genera una nuvola colorata usando i due colori scelti");
   }
 }
 

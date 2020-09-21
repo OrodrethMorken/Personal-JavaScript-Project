@@ -1,10 +1,9 @@
-class Snowflake {
+class Snowflake extends BackgroundTemplate{
 
   constructor() {
+    super();
     colorMode(RGB,255);
     angleMode(DEGREES);
-    this.guiContainer = createDiv("").parent("#gui");
-    this.guiContainer.attribute("id","options");
     this.textFieldSymmetry = createElement("li","Simmetria").parent("#options");
     this.textFieldSymmetry.attribute("id","symmetry");
     this.symmetry = createSelect().parent("#symmetry");
@@ -28,8 +27,6 @@ class Snowflake {
     this.clearButton = createButton("Pulisci Schermo").parent("#options");
     this.clearButton.mousePressed(this.clean);
 
-    this.infoContainer = createDiv("").parent("#info");
-    this.infoContainer.attribute("id","infoContainer");
     this.infoTextC = createElement("li", "tempo creazione matrice: ").parent("#infoContainer");
     this.infoTextC.attribute("id", "infoC")
     this.infoC = createElement("li", "a").parent("#infoC");
@@ -46,11 +43,6 @@ class Snowflake {
       loop();
       background(sfondo.backgroundF.value());
       sfondo.array = [];
-  }
-
-  clear(){
-    this.guiContainer.remove();
-    this.infoContainer.remove();
   }
 
   draw(){
