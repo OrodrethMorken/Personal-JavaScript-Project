@@ -26,6 +26,7 @@ class ColorBlend extends BackgroundTemplate{
     this.infoTextD = createElement("li", "tempo Visualizzazione matrice: ").parent("#infoContainer");
     this.infoTextD.attribute("id", "infoD")
     this.infoD = createElement("li", "").parent("#infoD");
+    this.grafic = createGraphics(width, height);
     this.createMatrix(this);
   }
 
@@ -43,19 +44,23 @@ class ColorBlend extends BackgroundTemplate{
     let timeEnd = millis();
     let totalTime = timeEnd-timeStart;
     blend.infoC.elt.innerText = (totalTime/1000).toString()+"s";
+
+    blend.grafic.background(0);
+    blend.grafic.noStroke();
+    blend.grafic.strokeWeight(3);
+    for (let i = 0; i < width; i+=2) {
+      for (let j = 0; j < height; j+=2) {
+        blend.grafic.stroke(this.matrix[i][j]);
+        blend.grafic.point(i, j);
+      }
+    }
+
     loop();
   }
 
   draw(){
     let timeStart = millis();
-    noStroke();
-    strokeWeight(3);
-    for (let i = 0; i < width; i+=2) {
-      for (let j = 0; j < height; j+=2) {
-        stroke(this.matrix[i][j]);
-        point(i, j);
-      }
-    }
+    image(this.grafic,0,0);
     let timeEnd = millis();
     let totalTime = timeEnd-timeStart;
     this.infoD.elt.innerText = (totalTime/1000).toString()+"s";
